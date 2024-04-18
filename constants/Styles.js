@@ -4,22 +4,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 10,
+    flexDirection: 'column',
   },
-  button: {
-    alignItems: "center",
-    marginTop: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    backgroundColor: "#3498db",
-  },
-  imageView: { height: "20%", width: "100%" },
+  imageView: { height: "20%", width: "100%", alignItems: "center", paddingBottom: 10,},
   imageLogo: {
     flex: 1,
-    width: null,
-    height: null,
-    marginBottom: 15,
+    width: 100,
+    height: 60,
+    alignItems: "center",
+    marginTop: 10,
+    marginBottom: 10,
     resizeMode: "contain",
   },
   image: {
@@ -29,28 +25,8 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: "contain",
   },
-  buttonText: {
-    fontFamily: "Avenir",
-    fontWeight: "600",
-    fontSize: 18,
-    color: "white",
-  },
-  timerText: {
-    fontFamily: "Avenir",
-    fontWeight: "700",
-    fontSize: 24,
-    color: "#e74c3c",
-    textAlign: "center",
-    marginBottom: 30,
-  },
-  scoreText: {
-    fontFamily: "Avenir",
-    fontWeight: "700",
-    fontSize: 24,
-    color: "#3498db",
-    textAlign: "center",
-    marginBottom: 10,
-  },
+  
+
 });
 
 export { styles };
