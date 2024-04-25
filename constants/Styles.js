@@ -8,14 +8,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flexDirection: 'column',
   },
-  imageView: { height: "20%", width: "100%", alignItems: "center", paddingBottom: 10,},
+  imageView: { height: "10%", width: "100%", alignItems: "center", paddingBottom: 0,},
   imageLogo: {
     flex: 1,
     width: 100,
-    height: 60,
+    height: 50,
     alignItems: "center",
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 0,
     resizeMode: "contain",
   },
   image: {
@@ -25,6 +25,28 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: "contain",
   },
+  text: {
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  popupcontainer: {
+    flex: 1,
+    backgroundColor: "#393939",
+    justifyContent: "space-between",
+    paddingTop: 10,
+    paddingHorizontal: 10,
+    flexDirection: 'column',
+  },
+  poptextview: {
+    
+    alignItems: "center",
+  },
+  popuptext: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    
+  },
+  
   
 
 });

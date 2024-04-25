@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 
 
-export default class WeatherWidget extends React.Component { 
+export default class WarningWidget extends React.Component { 
   constructor(props) {
     super(props);
   }
@@ -37,14 +37,14 @@ const styles = StyleSheet.create({
     //backgroundColor: '#307DCB',
      width: "40%",
     //height: "width",
-    aspectRatio: 1,
+    height: 150,
     
     //padding: 5,
     margin: 5,
   },
   box: {
     flex: 1,
-    backgroundColor: '#307DCB',
+    backgroundColor: 'black',
    
     borderRadius: 10,
     
@@ -58,4 +58,3 @@ const styles = StyleSheet.create({
   }
   
 });
-
