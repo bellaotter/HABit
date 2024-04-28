@@ -1,6 +1,8 @@
 // This import is necessary for any file containing a React component
 import React from "react";
 
+
+
 // These imports are part of our navigation package, React Navigation
 // https://reactnavigation.org/docs/getting-started
 import "react-native-gesture-handler";
@@ -14,6 +16,7 @@ import PopUpScreen from "./screens/PopUpScreen";
 
 import { Asset } from "expo-asset";
 
+
 // To initialize and style our Navigation Stack, we call the default methods
 // https://reactnavigation.org/docs/hello-react-navigation
 const Stack = createStackNavigator();
@@ -22,6 +25,9 @@ const StackOptions = { headerTitleStyle: { fontFamily: "Avenir" } };
 // Loading all images for quick use (eliminates lag problem)
 // https://docs.expo.io/versions/latest/sdk/asset/
 Asset.loadAsync(require("./assets/mdb_logo.png"));
+
+
+
 
 
 // This is the default entry point of our application

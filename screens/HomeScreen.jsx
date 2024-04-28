@@ -6,7 +6,15 @@ import { styles } from "../constants/Styles";
 import WeatherWidget from "../components/weatherwidget";
 import WarningWidget from '../components/warningwidget';
 
- 
+// Required for side-effects
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { app, db } from "../components/firebase.js";
+
+
+
+
+
+
 
 
 /* Our HomeScreen is a React Component. Remember, every component is just
@@ -15,15 +23,45 @@ import WarningWidget from '../components/warningwidget';
 
     NEW EXPO CLI https://blog.expo.dev/the-new-expo-cli-f4250d8e3421
 */
+  
+
 
 export default function HomeScreen(props) {
-
+  const [locations, setLocations] = useState([{ label: 'empty', value: 'empty' }]);
   const [selectedLocation, setSelectedLocation] = useState('Berkeley');
+ 
+  async function foo() {
+    const q = query(collection(db, "locations"));
+    const querySnapshot = await getDocs(q);
+    
+   
+    const locs = []
+    
+    querySnapshot.forEach((doc) => {
+       // doc.data() is never undefined for query doc snapshots
+       // const docRef = doc(db, "cities", doc.id);
+       console.log(doc.id, " => ", doc.data());
+       
+       locs.push({label: doc.data().name, value: doc.data().name});
+    });
+    console.log("locs: ", locs)
+    setLocations(locs);
+    return locs
+  }
+  
+  async function fetchData(){
+    let output = await foo();
+    console.log('Result is' + JSON.stringify(output)); // Output is 1 
+   }
+  
+   useEffect(() => {
+    async function fetchData() {
+      await foo(); // Call foo when component mounts
+    }
+    fetchData();
+  }, []);
 
-  const locationOptions = [
-    { label: 'Berkeley', value: 'Berkeley' },
-    { label: 'Alameda', value: 'Alameda' },
-    { label: 'New York', value: 'New York' } ];
+  
   
   const { navigation } = props;
   return (
@@ -43,7 +81,7 @@ export default function HomeScreen(props) {
   onValueChange={(itemValue, itemIndex) =>
     setSelectedLocation(itemValue)
   }>
-  {locationOptions.map((option, index) => (
+  {locations.map((option, index) => (
           <Picker.Item
             key={index}
             label={option.label}
