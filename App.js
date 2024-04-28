@@ -43,13 +43,13 @@ export default function App() {
             each screen using the "component" parameter. */}
         <Stack.Screen
           options={StackOptions}
-          name="Main Menu"
+          name="HABit"
           component={HomeScreen}
         />
 
         <Stack.Screen
           options={StackOptions}
-          name="Weather Pop Up"
+          name="Water Quality"
           component={PopUpScreen}
         />
         

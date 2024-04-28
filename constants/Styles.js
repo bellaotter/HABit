@@ -31,14 +31,13 @@ const styles = StyleSheet.create({
   },
   popupcontainer: {
     flex: 1,
-    backgroundColor: "#393939",
+    backgroundColor: "white",
     justifyContent: "space-between",
     paddingTop: 10,
     paddingHorizontal: 10,
     flexDirection: 'column',
   },
   poptextview: {
-    
     alignItems: "center",
   },
   popuptext: {

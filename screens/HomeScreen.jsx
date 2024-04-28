@@ -5,9 +5,10 @@ import {Picker} from '@react-native-picker/picker';
 import { styles } from "../constants/Styles";
 import WeatherWidget from "../components/weatherwidget";
 import WarningWidget from '../components/warningwidget';
+import Widget from '../components/widget';
 
 // Required for side-effects
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, docSnap, doc, getDoc } from "firebase/firestore";
 import { app, db } from "../components/firebase.js";
 
 
@@ -27,14 +28,13 @@ import { app, db } from "../components/firebase.js";
 
 
 export default function HomeScreen(props) {
-  const [locations, setLocations] = useState([{ label: 'empty', value: 'empty' }]);
+  const [locations, setLocations] = useState([{ label: 'empty', value: 'empty', mostrecent: 'empty'}]);
   const [selectedLocation, setSelectedLocation] = useState('Berkeley');
+
  
   async function foo() {
     const q = query(collection(db, "locations"));
     const querySnapshot = await getDocs(q);
-    
-   
     const locs = []
     
     querySnapshot.forEach((doc) => {
@@ -42,27 +42,39 @@ export default function HomeScreen(props) {
        // const docRef = doc(db, "cities", doc.id);
        console.log(doc.id, " => ", doc.data());
        
-       locs.push({label: doc.data().name, value: doc.data().name});
+       locs.push({label: doc.data().name, value: doc.id, mostrecent: doc.data().mostrecent});
     });
     console.log("locs: ", locs)
+    
     setLocations(locs);
     return locs
   }
-  
-  async function fetchData(){
-    let output = await foo();
-    console.log('Result is' + JSON.stringify(output)); // Output is 1 
-   }
-  
-   useEffect(() => {
-    async function fetchData() {
-      await foo(); // Call foo when component mounts
-    }
-    fetchData();
-  }, []);
+
+ 
+
 
   
   
+  async function fetchData(){
+    let output = await foo();
+    console.log('Result is ' + JSON.stringify(output)); // Output is 1 
+    //fetchWeather();
+    
+   }
+
+   
+  
+  useEffect(() => {
+    console.log("HIIIIIII")
+  //  async function fetchData() {
+   //   await foo(); // Call foo when component mounts
+  //  }
+    fetchData();
+    
+  }, []);
+
+  
+
   const { navigation } = props;
   return (
     <ScrollView style= {{backgroundColor: "white"}}>
@@ -80,6 +92,7 @@ export default function HomeScreen(props) {
   selectedValue={selectedLocation}
   onValueChange={(itemValue, itemIndex) =>
     setSelectedLocation(itemValue)
+    
   }>
   {locations.map((option, index) => (
           <Picker.Item
@@ -93,16 +106,21 @@ export default function HomeScreen(props) {
 
       
       <View style={{ flexDirection: 'row', margin: 2.5}}>
-      <WeatherWidget title={selectedLocation} onPress={() => navigation.navigate("Weather Pop Up", {title: selectedLocation})} />
-      <WeatherWidget title={selectedLocation} onPress={console.log("HELLOOOO")}/>
+      <Widget initialValue={selectedLocation} mostRecent={locations.find(item => item.value === selectedLocation)} onPress={console.log("hi")}></Widget>
+      <Widget initialValue={selectedLocation} mostRecent={locations.find(item => item.value === selectedLocation)} onPress={console.log("hi")}></Widget>
       </View>
       <View style={{ flexDirection: 'row', margin: 2/5}}>
       <WarningWidget title={selectedLocation} onPress={console.log("HELLOOOO")}></WarningWidget>
       </View>
       <View style={{ flexDirection: 'row', margin: 2.5}}>
-      <WeatherWidget title={selectedLocation} onPress={() => navigation.navigate("Weather Pop Up")} />
+      <WeatherWidget title={selectedLocation} onPress={() => navigation.navigate("Water Quality")} />
       <WeatherWidget title={selectedLocation} onPress={console.log("HELLOOOO")}/>
       </View>
+      <View style={{ flexDirection: 'row', margin: 2.5}}>
+      <Widget initialValue={selectedLocation} mostRecent={locations.find(item => item.value === selectedLocation)} onPress={console.log("hi")}></Widget>
+      <Widget initialValue={selectedLocation} mostRecent={locations.find(item => item.value === selectedLocation)} onPress={console.log("hi")}></Widget>
+      </View>
+      
       </View>
      
      <Text> End of View </Text>
