@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   imageView: { height: "10%", width: "100%", alignItems: "center", paddingBottom: 0,},
+  imageView1: { flexDirection:'row',height: "10%", width: "100%", alignItems: "center", paddingBottom: 0, marginTop: 30,},
   imageLogo: {
     flex: 1,
     width: 100,

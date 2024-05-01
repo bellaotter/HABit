@@ -6,7 +6,8 @@ import { StyleSheet } from "react-native";
 
 
 export default function PopUpScreen(props) {
-  const { title } = props.route.params;
+  const { selectedLocation } = props.route.params;
+  console.log(props.route.params);
 
 
   // Style & return the view.
@@ -14,7 +15,7 @@ export default function PopUpScreen(props) {
     <View style={styles.popupcontainer}>
       <View style={styles.poptextview}> 
         <Text style={styles.popuptext}> Water Quality </Text>
-        <Text>test: {title}</Text>
+        <Text>{selectedLocation}</Text>
 
         
       </View>

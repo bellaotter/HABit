@@ -81,7 +81,7 @@ export default function HomeScreen(props) {
      <View style={styles.container}>
       <View style={styles.imageView}>
         <Image
-          source={require("../assets/planet1.png")}
+          source={require("../assets/habitlogo.png")}
           style={styles.imageLogo}
         />
       
@@ -105,25 +105,36 @@ export default function HomeScreen(props) {
       <View style={{marginLeft: 5, marginRight:5}}>
 
       
-      <View style={{ flexDirection: 'row', margin: 2.5}}>
+      <View style={{ flex: 1, flexDirection: 'row', margin: 2.5,  justifyContent: 'center', alignItems: 'center'}}>
+      <TouchableOpacity style={{  height: 190}} onPress={() => navigation.navigate("Water Quality", { selectedLocation: locations.find(item => item.value === selectedLocation).mostrecent})}> 
       <Widget initialValue={selectedLocation} mostRecent={locations.find(item => item.value === selectedLocation)} onPress={console.log("hi")}></Widget>
+      </TouchableOpacity >
+      <TouchableOpacity style={{ height: 190}} onPress={() => navigation.navigate("Water Quality")}>
       <Widget initialValue={selectedLocation} mostRecent={locations.find(item => item.value === selectedLocation)} onPress={console.log("hi")}></Widget>
+      </TouchableOpacity>
       </View>
-      <View style={{ flexDirection: 'row', margin: 2/5}}>
-      <WarningWidget title={selectedLocation} onPress={console.log("HELLOOOO")}></WarningWidget>
-      </View>
-      <View style={{ flexDirection: 'row', margin: 2.5}}>
-      <WeatherWidget title={selectedLocation} onPress={() => navigation.navigate("Water Quality")} />
-      <WeatherWidget title={selectedLocation} onPress={console.log("HELLOOOO")}/>
-      </View>
-      <View style={{ flexDirection: 'row', margin: 2.5}}>
-      <Widget initialValue={selectedLocation} mostRecent={locations.find(item => item.value === selectedLocation)} onPress={console.log("hi")}></Widget>
-      <Widget initialValue={selectedLocation} mostRecent={locations.find(item => item.value === selectedLocation)} onPress={console.log("hi")}></Widget>
-      </View>
+
+      
       
       </View>
+
+      <View style={styles.container}>
+      <View style={styles.imageView1}>
+        <Image
+          source={require("../assets/planet1.png")}
+          style={styles.imageLogo}
+        />
+        <Image
+          source={require("../assets/habitlogo.png")}
+          style={styles.imageLogo}
+        />
+        
+        
+      
+      </View>
+      </View>
      
-     <Text> End of View </Text>
+    
       {/* To create a custom-styled button, we're using a <Text/> component wrapped in a 
             <TouchableOpacity/> component. TouchableOpacity takes in a function, onPress, that is called
             when the user taps on that view. Here, we navigate to the Play screen.  */}
